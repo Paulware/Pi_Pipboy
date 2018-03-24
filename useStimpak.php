@@ -10,8 +10,8 @@
   
   $health = $Owner["Health"];
   $health = $health + 25;
-  if ($health > 115) {
-     $health = 115;
+  if ($health > 25) {
+     $health = 25;
   } 
      
   $sql = "Update pipboys set Health=$health Where ID=$OwnerId";    

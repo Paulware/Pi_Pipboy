@@ -8,13 +8,17 @@
 <?php
   include "common.inc";
   include "common.php";
-  $OwnerId       = getParam ("OwnerId" );
-  $Owner         = findOwner ( $OwnerId );
-  $health        = $Owner ["Health"];
-  $StimpakId     = findItem ( "Stimpak");
-  $ItemId        = $StimpakId["ID"];
-  $StimPaks      = findInventory ($OwnerId, $ItemId);
-  $stimQuantity  = $StimPaks["Quantity"]; 
+  $OwnerId        = getParam ("OwnerId" );
+  $Owner          = findOwner ( $OwnerId );
+  $health         = $Owner ["Health"];
+  $StimpakId      = findItem ( "Stimpak");
+  $ItemId         = $StimpakId["ID"];
+  $StimPaks       = findInventory ($OwnerId, $ItemId);
+  $stimQuantity   = $StimPaks["Quantity"]; 
+  $ReloadId       = findItem ("Reload");
+  $ItemId         = $ReloadId ["ID"];
+  $Reloads        = findInventory ($OwnerId, $ItemId);
+  $reloadQuantity = $Reloads["Quantity"];
 ?>
   
 </head>
@@ -58,12 +62,17 @@
      <?php
      echo ("Stimpak($stimQuantity)");
      ?>
-     </span><span>Radaway (0)</span><span>Stix</span></div>
+     </span><span>Radaway (0)</span><span1></span1>
+     <span onclick="reloadClick();" id="reload">
+     <?php
+        echo ("Reloads($reloadQuantity)");
+     ?>
+     </span></div>
      <div class="info-bar">
        <span class="weapon"></span>
-       <span class="aim"><p>21</p></span>
+       <span class="aim">    <p>21</p></span>
        <span class="helmet"></span>
-       <span class="shield"><p>114</p></span>
+       <span class="shield"> <p>114</p></span>
        <span class="voltage"><p>126</p></span>
        <span class="nuclear"><p>35</p></span>
      </div>
@@ -79,17 +88,17 @@
 <script>
 
 <?php
-  echo ("var ownerId      = $OwnerId;\n" );
-  echo ("var health       = $health;\n");
-  echo ("var stimQuantity = $stimQuantity;\n" );
+  echo ("var ownerId        = $OwnerId;\n" );
+  echo ("var health         = $health;\n");
+  echo ("var stimQuantity   = $stimQuantity;\n" );
+  echo ("var reloadQuantity = $reloadQuantity;\n" );
+  echo ("var ammunition     = $reloadQuantity * 25;\n" );
   echo ("/* Debug Info \n" );
   echo (" StimpakId: $ItemId\n" );
   echo ("*/\n" );
 ?>
 
 </script>  
-<script  src="js/pip.js"></script>
-
+<script src="js/pip.js"></script>
 </body>
-
 </html>

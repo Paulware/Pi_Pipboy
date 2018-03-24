@@ -120,7 +120,7 @@
      $q = query ($sql);        
      $sql = "Update pipboys Set Hits=0";
      $q = query ($sql);        
-     $sql = "Update pipboys Set Health=5";
+     $sql = "Update pipboys Set Health=25";
      $q = query ($sql);     
      
      $sql = "Select * From pipboys";

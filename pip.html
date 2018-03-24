@@ -1,0 +1,92 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="pip.css">
+</head>
+<body onload="startUp();">
+<script>
+   var boyDiv;
+   
+   function activate(className) {    
+      for (i=0; i<tabs.length; i++) {
+        tabs[i].className = tabs[i].originalName;
+      }
+      
+      if (className == 'stat') {
+         el = document.getElementById ( 'statIcons');
+         el.style.visibility = 'visible';
+         boyDiv.style.visibility = 'visible';
+      } else { 
+         el = document.getElementById ( 'statIcons');
+         el.style.visibility = 'hidden';
+         boyDiv.style.visibility = 'hidden';
+      }
+      
+      var x = document.getElementsByClassName(className);
+      for (i = 0; i < x.length; i++) {
+          x[i].className += " active";          
+      }      
+   }
+
+   var tabs = [];
+   function getTabs() {
+      var parent = document.getElementsByClassName ("holder")[0];     
+      var child;
+      for (var i=0; i < parent.childNodes.length; i++) {
+         child = parent.childNodes[i];
+         if ((child.className == "stat") ||
+             (child.className == "inv") ||
+             (child.className == "data") || 
+             (child.className == "map" ) ||
+             (child.className == "radio") ) {
+             child.originalName = child.className;
+             tabs.push (child);           
+         }
+      }       
+   }
+   function startUp() {      
+      getTabs();
+      console.log ( 'Found ' + tabs.length + ' tabs' );
+      boyDiv = document.getElementById ( "boyDiv" );
+      activate ('stat');      
+   }
+</script>
+<div class="screen">
+  <div class="screen-reflection"></div>
+  <div class="scan"></div>
+  <nav class="holder">
+     <span class="stat"  onclick="activate( 'stat');"></span>
+     <span class="inv"   onclick="activate(  'inv');"></span>
+     <span class="data"  onclick="activate( 'data');"></span>
+     <span class="map"   onclick="activate(  'map');"></span>
+     <span class="radio" onclick="activate('radio');"></span>
+     <p>
+     <span class="status"></span><span class="off special"></span></p>
+  </nav>
+  <div class="vaultboy" id="boyDiv">
+    <!-- health bars -->
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+    <div class="bar4"></div>
+    <div class="bar5"></div>
+    <div class="bar6"></div>
+  </div>
+  <div id="statIcons">
+     <div class="supplies"><span>Stimpak (0)</span><span>Radaway (0)</span><span>Stix</span></div>
+     <div class="info-bar">
+       <span class="weapon"></span>
+       <span class="aim"><p>21</p></span>
+       <span class="helmet"></span>
+       <span class="shield"><p>114</p></span>
+       <span class="voltage"><p>126</p></span>
+       <span class="nuclear"><p>35</p></span>
+     </div>
+     <div class="hud-bar">
+       <div class="hp"></div>
+       <div class="exp"></div>
+       <div class="ap"></div>
+     </div>
+  </div>
+</div>
+</body>
+</html>

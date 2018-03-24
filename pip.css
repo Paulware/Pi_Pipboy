@@ -6,16 +6,13 @@ body{background:#111;font-family:'Droid Sans',sans-serif;font-size:7pt;color:#d8
 /* .screen-border{background:#272b2a;width:370px;height:290px;margin:auto;border-radius:50px;padding-top:5%;border-top:10px solid #5a5f5b;border-bottom:5px solid #3a3e41;position:relative;z-index:-5;} */
 .screen{width:300px;height:235px;position:absolute;margin-left:26px;border-radius:20px;background:#000;border:5px solid #333;padding:5px 5px 5px 0;;overflow:hidden;} 
 /* .screen-reflection{width:285px;height:185px;background:linear-gradient(150deg,#fff,rgba(0,0,0,0));position:relative;z-index:99;opacity:0.07;margin:9px 10px 10px 10px;border-radius:10px;} */
-.holder{cursor:pointer;}
 .scan{width:305px;height:80px;background:linear-gradient(rgba(0,0,0,0),#7ff12a);position:absolute;animation:scan;animation-duration:4s;animation-iteration-count: infinite;top:-85px;z-index:99;opacity:0.25;}
 nav{height:25px;width:90%;position:absolute;top:0;left:0;border-bottom:1px solid #8df776;padding-left:10%;border-top-right-radius:20px;z-index:95;border-top-left-radius:20px;}
 nav span{color:#8df776;line-height:31px;font-size:9pt;letter-spacing:0.3px;margin-left:14px;font-weight:300;}
 nav .active{background:#000;border-right:1px solid #8df776;border-left:1px solid #8df776;border-bottom:1px solid #000;border-top-left-radius:5px;border-top-right-radius:5px;padding:3px 6px 3px 6px;}
 nav p{margin:-10px 0 0 0;height:25px;}
 nav .off{color:#172f18;position:relative;left:-5px;}
-
-.vaultboy{background:url('../images/vaultboy.gif');background-size:77px;background-position:2px;width:80px;height:100px;position:absolute;left:110px;top:56px;}
-
+.vaultboy{background:url('images/vaultboy.gif');background-size:77px;background-position:2px;width:80px;height:100px;position:absolute;left:110px;top:56px;}
 /* width of bar = width */
 .bar1,.bar2,.bar3,.bar4,.bar5,.bar6{width:15px;height:3.5px;background:#64d515;position:absolute;}
 .bar1{left:32px;top:-8px;}
@@ -28,32 +25,28 @@ nav .off{color:#172f18;position:relative;left:-5px;}
 .bar5{left:-20px;top:82px;}
 .bar6{right:-20px;top:82px;}
 .supplies{height:16px;position:absolute;bottom:22px;left:13px;background:#000;}
-.supplies span{cursor:pointer;margin-right:5px;background:#78e461;padding:2px 3px 2px 3px;color:#000;font-weight:700;}
-.supplies span1{cursor:pointer;margin-right:5px;background:#0;padding:40px;color:#000;font-weight:700;}
+.supplies span{margin-right:5px;background:#78e461;padding:2px 3px 2px 3px;color:#000;font-weight:700;}
 .hud-bar{height:12px;position:absolute;width:290px;bottom:9px;left:15px;background:#000;color:#8df776;z-index:96;}
 .info-bar{width:170px;height:20px;bottom:50px;left:86px;position:absolute;z-index:97;}
 .info-bar span{background:rgba(0,255,0,0.0.2);padding:3px;height:15px;display:inline-block;vertical-align:top;font-size:7px;color:#8df776;text-align:center;position:relative;}
 .info-bar span i{position:absolute;top:0;left:5px;}
 .info-bar span p{margin-top:8px;}
+
 .pip{width:630px;height:400px;background:#8b7867;background: linear-gradient(#8b7867,#4f4138);margin:100px auto 0 auto;border-radius:50px;border-bottom-right-radius:90px;border-top:2px solid #c3bfb4;position:relative;}
 
-/*health */
-.hp{display:inline-block;} 
-/* .hp:before{content:"HP 365/365";} */
-
+.hp{display:inline-block;}.hp:before{content:"HP 365/365";}
 /* experience value */
 .exp{display:inline-block;margin-left:20px;}.exp:before{content:"Level 48";}
 /* width gives you level indicator (99px = level 48) */
 .exp:after{content:"";display:inline-block;width:99px;height:4px;border:1px solid lightgreen;margin-left:2px;}
 /* ap value */
-.ap{display:inline-block;}
-/* margin-left:20px;}.ap:before{content:"AP 110/110";} */
-.weapon{background:url('../images/pipboy-gun2.png') no-repeat;width:23px;height:auto;}
-.aim{background:url('../images/pipboy-aim2.png')}
-.shield{background:url('../images/pipboy-shield2.png')}
-.voltage{background:url('../images/pipboy-voltage2.png');}
-.nuclear{background:url('../images/pipboy-nuclear2.png')}
-.helmet{background:url('../images/pipboy-helmet2.png');}
+.ap{display:inline-block;margin-left:20px;}.ap:before{content:"AP 110/110";}
+.weapon{background:url('images/pipboy-gun2.png') no-repeat;width:23px;height:auto;}
+.aim{background:url('images/pipboy-aim2.png')}
+.shield{background:url('images/pipboy-shield2.png')}
+.voltage{background:url('images/pipboy-voltage2.png');}
+.nuclear{background:url('images/pipboy-nuclear2.png')}
+.helmet{background:url('images/pipboy-helmet2.png');}
 .aim,.shield,.voltage,.nuclear{width:10px;background-size:10px 10px;height:auto;background-repeat:no-repeat;background-position:3px 0px;}
 .weapon,.helmet{background-size:27px;height:auto;width:23px;background-repeat:no-repeat;}
 .bottom{width:200px;height:105px;background: linear-gradient(#7d6855,#726350,#211a14);position:absolute;bottom:-20px;border-bottom-right-radius:60px;border-bottom-left-radius:60px;border-top-left-radius:35px;border-top-right-radius:35px;border-top:3px solid #403227;left:170px;}
