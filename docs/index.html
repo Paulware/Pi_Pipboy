@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>Lazertag Overview</title>
+</head>
+<body>
+<H1>System Overview</H1>
+The lazertag/infra-red system is composed of various components linked together in an Internet of Things local network. <br>
+This network is provided by a raspberry pi 3 running an apache web-server.  Game devices log into the pi via a 
+wifi (esp8266) component.  Infra-red shots are created by an arduino.  Shots are detected by the same arduino
+who then reports this action to the raspberry pi.  The pi allocates damage, updates its database (mysql) and sends 
+a message back to "hit" the arduino and deal damage.  This reduces the player's health points which can then result in 
+the "death" of the player. 
+
+<H1>Game Overview</H1>
+   Players are assigned teams (red/green/blue) and typically start at a spawn point.  They may navigate to a capture point, bomb location or to intercept enemy players.
+Along the way they may encounter ammo, or health crates.  When a player's health is low they can use a stimpak to increase 
+health.  When their ammunition is low they can reload using a reload kit.  When a player's health is reduced to zero
+they are consider "killed" and must return to their spawn point to reuse their next life (if available).
+  
+   An entire team is eliminated when all members of that team have lost their last life.
+   Games are won when only 1 team remains or all flags have been captured by a single team.
+<h2>Supported Games</h2>
+<ul>
+<li><b>Death Match (Every man for himself)</b></li>
+There may be respawns or no respawns.  The game is won when 1 player remains.
+<li><b>Team Death Match</b></li>
+The game is won when 1 team remains.
+<li><b>Capture the flag</b></li>
+The game is won when 1 team has captured all the flags.
+<li>Escort the VIP (Coming soon)</li>
+The game is won when the VIP reaches a spawn point or is killed.
+<li>Disarm the bomb (Coming soon)</li>
+The game is won when the bomb is placed at a specific point and counts down, or the bomb is killed.
+<li>Trouble in terrorist town (Coming soon)<li>
+There are 3 player types: Terrorist, Police and Detective.  The terrorists win when all the police are killed. 
+The police win when all the terrorists are killed.  The detective wins when the Police win.  The detective can ask
+you if you are a terrorist or not.  If a police kills a police man, both die.  If a terrorist kills a terrorist, both 
+die.
+</ul>
+<H1>Lazer Tag Components and Design</H1><br>
+Click on image to view design:
+<table border="2px solid">
+<tr><th>Name</th><th>Image</th><th>Description</th></tr>
+<tr><td>Raspberry pi 3.0</td><td><a href="https://sites.google.com/site/stemlazertag/pi3"><img src="https://sites.google.com/site/stemlazertag/home/pi3.png" width="100"></a></td><td> connects to router via RJ45 cable and runs an apache web-server and a node.js web-server</td></tr>
+<tr><td>Rifle</td><td><a href="images/longStrike.jpg"><img src="https://sites.google.com/site/stemlazertag/home/LongStrikeLazer.jpg" width="100"></a></td><td>connects to web-server (via esp8266) and shoots IR pulses at enemy</td></tr>
+<tr><td>Flags</td><td><a href="images/flag.jpg"><img src="https://sites.google.com/site/stemlazertag/home/flag.jpg" width="100"></a></td><td>Will change to team color (red/green/blue) and rotates when hit.  Game may be over when all flags are same color.</td></tr>
+<tr><td>Game Configurator</td><td><a href="AdminControl.html"><img src="images/AdminControl.jpg" width="100"></td><td>Allows the administrator to remotely start the game, also contains an lcd display to show ip address of raspberry pi</td></tr>
+<tr><td>Smart Device</td><td>&nbsp;</td><td>Provides health/ammo information to the player and allows them to increase their health or reload</td></tr>
+</table>
+<h1>Optional devices</h1>
+<table border="2px solid">
+<tr><td>Pipboy (android device)</td><td><a href="https://sites.google.com/site/stemlazertag/home/pipboy3000.jpg"><img src="images/pipboy3000.jpg" width="100"></a></td><td>Provides a wireless network and contains an apache web-server</td></tr>
+<tr><td>VIP Helmet</td><td><a href="https://sites.google.com/site/stemlazertag/home/helmet.jpg"><img src="images/helmet.jpg" width="100"></a></td><td>connects to web-server (via esp8266) and receives IR "hits" via arduino</td></tr>
+<tr><td>Fake Bomb</td><td>&nbsp;</td><td>Disarm the bomb to win the game</td></tr>
+<tr><td>Self propelled vehicle</td><td><a href="images/tigerTank.jpg"><img src="https://sites.google.com/site/stemlazertag/home/tigerTank.jpg" width="100"></a></td><td>connects to web-server (via esp8266) and accepts wsda commands from an alternate (node.js) web-server</td></tr>
+<tr><td>Pistol</td><td><a href="https://sites.google.com/site/stemlazertag/home/lazertagPistol.jpg"><img src="images/lazertagPistol.jpg" width="100"></a></td><td>does not connect to web-server, and uses an arduino mini-pro to fire</td></tr>
+<tr><td>Sentinel</td><td>&nbsp;<td>This device will fire when movement is detected</td></tr>
+<tr><td>Stimpak</td><td>&nbsp;<td>Reset the health points of a player</td></tr>
+</table>
+<hr>
+
+<h1>Some requirements:</H1>
+   <ul>
+   <li>The raspberry server will broadcast its ip address via <a href="https://en.wikipedia.org/wiki/User_Datagram_Protocol">udp</a> to all connected devices</li>
+   <li>Each lazer tag gun will have an <a href="https://en.wikipedia.org/wiki/ESP8266">esp8266</a> which logs to the local pipboy network with <a href="https://en.wikipedia.org/wiki/Service_set_(802.11_network)#Service_set_identification_.28SSID.29">SSID</a>="Pipboy2000" Password=""</li>
+   <li>Each connected device will display color green when it receives receives the raspberry pi server's ip address</li>
+   </ul>
+<h1>Concepts</h1>
+   <ul>
+   <li><a href="sqlDatabaseQueries.html">MySQL and Database queries</a></li>
+   <li><a href="htmlJavascript.html">HTML/javascript design</a></li>
+   <li><a href="phpDesign.html">Php design</a></li>
+   <li><a href="pythonDesign.html">Python design</a></li>
+   <li><a href="nodeDesign.html">Node.js design</a></li>
+   <li><a href="luaDesign.html">Lua code design</a> running on the network devices</li>
+   <li>Helmet arduino code</li>
+   <li>Rifle arduino code</li>
+   <li>Pistol arduino code</li>
+   <li>Flag arduino code</li>
+   <li>Remote starter arduino code</li>
+   <li>LCD arduino mini pro code</li>
+   <li>PIP boy Android MIT App inventor 2 code</li>
+   <li>Tank/Sumo bot arduino code</li>
+   </ul>
+
+</body>
+</html>

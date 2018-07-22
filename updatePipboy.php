@@ -59,11 +59,11 @@ if ($cmd == "broadcast") {
    $ID     = $Pipboy ["ID"];
    $Health = $Pipboy ["Health"];
    $myTeam = $Pipboy ["Team"];
-   
- 
+    
    $shooterFound = true;
+   $shooterMAC = "";
    // Get shooterName and shooterTeam
-   if ($Parameter == 'c00') {      
+   if (($Parameter == 'c00') || ($Parameter == 'abc')) {      
      $shooter = false;
      $shooterTeam = 'Green';    
      $shooterName = 'Sentry';
@@ -83,13 +83,18 @@ if ($cmd == "broadcast") {
      if ($shooter) { 
         $shooterName = $shooter["Username"];   
         $shooterTeam = $shooter["Team"];
+        $shooterMAC =  $shooter["MAC"];
      } else {
         $shooterFound = false;
      }       
    }  
  
    if ($shooterFound) { 
-      if ($PipboyTypename == "Flag") {
+      if ($shooterMAC == $MAC) { // stimpak 
+         echo ("I have detected the use of a stimpak<br>\n" );
+         $ID = $Pipboy["ID"];         
+         useStimpak ($ID);                  
+      } else if ($PipboyTypename == "Flag") {
          echo ("I am a flag at $IpAddress, getting hit by team: $shooterTeam<br>\n" );
          // Change command to set color
          $cmd = "python sendMessage.py $IpAddress \"$shooterTeam\"";
@@ -119,14 +124,8 @@ if ($cmd == "broadcast") {
             }      
 
             // Todo: Use boolean for winner rather than integer   
-            if ($winner == 1) { // Send "Winner message to make the flag blink"     
-               $sql = "Select * From pipboys where Typename='Flag'";
-               $result = query ($sql);
-               while ($row = mysql_fetch_assoc ($result)) {		        
-                  $Destination = $row["IpAddress"];     
-                  $cmd = "python sendMessage.py $Destination \"Winner\"";
-                  exec($cmd);	     
-               }           
+            if ($winner == 1) { // Send "Winner message to make the flag blink" 
+               blinkFlags ($Team);
                  
                $sql = "Insert into systemlog (Message) Values ('$shooterName won the game!!!' )";
                query ($sql);        
@@ -168,10 +167,19 @@ if ($cmd == "broadcast") {
            echo "<br>$mystring<br>\n" ;
            var_dump ($output);
                           
-           $Health = $Health;         
+           $Health = $Health - 1;         
            $sql = "Update pipboys Set Health=$Health Where ID=$ID";
            $result = query ($sql);
-           if ($Health==0) { 
+           $numTeams = numberOfTeams();
+           echo ("The number of teams remaining: $numTeams <br>\n");
+           
+           if ($numTeams == 1) { 
+              echo ("number of teams == 1, so there is a winner <BR>\n" );
+              $team = findWinningTeam();
+              blinkFlags ($team);           
+           } 
+           
+           if ($Health==0) {            
              if ($shooter) { 
                echo ( "Give $shooterName all my stuff.<br>\n" );
                $sql = "Insert into systemlog (Message) Values ('$shooterName killed $Username and got all his stuff!' )";

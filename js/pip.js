@@ -164,14 +164,20 @@
    function setHp (quantity) {
       var hps = document.getElementsByClassName('hp');
       var hp = hps[0];
+      var msg = "HP "; 
+      if (quantity < 10) { 
+        msg = msg + "0"; 
+      } 
+      
       //alert ( 'setHP to [quantity]: [' + quantity + ']' );
       health = quantity;
-      hp.innerHTML = "HP " + health;      
+     
+      hp.innerHTML = msg + health;      
    } 
    
    function startUp() {      
       getTabs();
-      console.log ( 'Found ' + tabs.length + ' tabs' );
+      //console.log ( 'Found ' + tabs.length + ' tabs' );
       boyDiv = document.getElementById ( "boyDiv" );
       divs.push (document.getElementById ("boyDiv"));
       divs.push (document.getElementById ("mapDiv"));
@@ -179,7 +185,9 @@
       divs.push (document.getElementById ("dataDiv"));
       divs.push (document.getElementById ("radioDiv"));
       activate ('stat'); 
+      //alert ( 'set health to: ' + health );
       setHp (health); 
+       
       setAmmo (ammunition);      
    }
 

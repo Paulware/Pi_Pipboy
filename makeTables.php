@@ -7,7 +7,7 @@ Make Tables required for the PipboyCreation project<br>
   
   $q = mysql_query ("Drop Table pipboys");
   echo ("Create Table pipboys<br>\n");
-  $sql = "CREATE TABLE pipboys (ID INT AUTO_INCREMENT PRIMARY KEY, Health INT Default 0, Ammo INT Default 25, Hits INT Default 0, IpAddress char(255), Team char(255), MAC char(255), MACOwner char(255), Username char(255), Password char(255), Typename char(255), Timestamp TIMESTAMP, Message char(255), Avatar char(255), Weapon char (255))";
+  $sql = "CREATE TABLE pipboys (ID INT AUTO_INCREMENT PRIMARY KEY, State INT Default 0, Health INT Default 0, Ammo INT Default 25, Hits INT Default 0, IpAddress char(255), Team char(255), MAC char(255), MACOwner char(255), Username char(255), Password char(255), Typename char(255), Timestamp TIMESTAMP, Message char(255), Avatar char(255), Weapon char (255))";
   $result = mysql_query ($sql) or die ("Could not execute: $sql");
   
   $q = mysql_query ("Drop Table inventory");
@@ -24,6 +24,11 @@ Make Tables required for the PipboyCreation project<br>
   $q = mysql_query ("Drop Table items");
   $sql = "CREATE TABLE items (ID INT AUTO_INCREMENT PRIMARY KEY, Name char(255), Description char(255))";
   $result = query ($sql);  
+
+  echo ("Create Table namevaluepairs<br>\n" );
+  $q = mysql_query ("Drop Table namevaluepairs");
+  $sql = "CREATE TABLE namevaluepairs (ID INT AUTO_INCREMENT PRIMARY KEY, Name char(255), Value char(255))";
+  $result = query ($sql);  
   
   echo ("Create Table Messages<br>\n" );
   $q = mysql_query ("Drop Table messages" );
@@ -37,6 +42,18 @@ Make Tables required for the PipboyCreation project<br>
   
 
   // Add data to tables 
+query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"5c:cf:7f:14:2b:2c\", \"\", \"Owen\", \"\", \"\")");
+query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"18:fe:34:dc:fc:88\", \"\", \"Jack\", \"\", \"\")");
+query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"18:fe:34:d3:33:4c\", \"\", \"Longshot\", \"\", \"\")");
+query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"5c:cf:7f:b1:15:63\", \"\", \"Smart Watch\", \"\", \"\")");
+query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"18:fe:34:00:2d:2b\", \"\", \"Henry\", \"\", \"\")");
+query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"5c:cf:7f:c2:d1:9f\", \"\", \"Modulus\", \"\", \"\")");
+query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"18:fe:34:a2:50:74\", \"\", \"4X20Display\", \"\", \"\")");
+
+query ("Insert into items (Name,Description) values (\"Stimpak\", \"\")");
+query ("Insert into items (Name,Description) values (\"Reload\", \"25 Ammo\")");
+
+/*
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"\", \"Store1\", \"\", \"First Store\", \"First Store\", \"\")");
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"\", \"Store2\", \"\", \"Bank\", \"Bank\", \"\")");
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"\", \"Store3\", \"\", \"Hospital\", \"\", \"\")");
@@ -53,7 +70,6 @@ query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) value
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Flag\", \"18:fe:34:e0:65:e8\", \"\", \"Flag4\", \"\", \"None\")");
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"5c:cf:7f:00:31:9b\", \"\", \"Conner\", \"\", \"Red\")");
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Rifle\", \"5c:cf:7f:c2:ba:39\", \"5c:cf:7f:00:31:9b\", \"Conner Rifle\", \"\", \"Red\")");
-query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Rifle\", \"18:fe:34:d3:33:4c\", \"5c:cf:7f:1b:50:10\", \"Thomas Rifle\", \"\", \"Blue\")");
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Flag\", \"5c:cf:7f:14:32:4c\", \"\", \"Flag1\", \"\", \"None\")");
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Player\", \"5c:cf:7f:80:5b:97\", \"\", \"Derek Helmet\", \"\", \"Red\")");
 query ("Insert into pipboys (Typename,MAC,MACOwner,Username,Password,Team) values (\"Rifle\", \"18:fe:34:dc:fc:5b\", \"\", \"Derek Rifle\", \"\", \"Red\")");
@@ -91,6 +107,8 @@ query ("Insert into items (Name,Description) values (\"KAMEHAMEHA\", \"It does t
 query ("Insert into items (Name,Description) values (\"DragonBall\", \"KRILIN SUCKS!!!!!!!!!!!!!!!!!!!\")");
 query ("Insert into items (Name,Description) values (\"PowerArmor\", \"Protects the user when they get shot\")");
 query ("Insert into items (Name,Description) values (\"Reload\", \"25 Ammo\")");
+*/
+
 echo ("Tables created.");
 ?>
 </body>

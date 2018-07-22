@@ -12,21 +12,11 @@
     $cmd = "python sendMessage.py $IpAddress \"reload\"";
     exec($cmd);	     
   }   
-     
-  //$sql = "Update pipboys set Ammo=25 Where ID=$OwnerId";    
-  //echo ("<br>$sql<br>\n" );
-  //$result = query ($sql);  
-  echo ("Do reload<br>\n" );
-  $Reload = findItem ( "Reload");
-  $ReloadId = $Reload ["ID"];  
-  modifyInventory ($OwnerId, $ReloadId, 0, -1);
-  $numReloads = findInventory ($OwnerId, $ReloadId);
-  $reloadQuantity = $numReloads["Quantity"];
-  $numBullets = $reloadQuantity * 25;  
-  //$sql = "Insert into systemlog (Message) Values ('$Username reloaded')"; 
-  //query ($sql);
-  echo ("<br>Number of Reloads:$reloadQuantity <br>\n" );
-  echo ("<br>Ammo:$numBullets <br>\n" );  
+
+  $reloads = doReload();  
+  $bullets = $reloads * 25;
+  echo ("<br>Number of Reloads:$reloads <br>\n" );
+  echo ("<br>Ammo:$bullets <br>\n" );  
 ?>
 </head>
 <body>

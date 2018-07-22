@@ -3,14 +3,17 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
   <title>Lazer Tag Pip-Boy UI</title>
   <link rel="stylesheet" type="text/css" href="css/pip.css">
 <?php
   include "common.inc";
   include "common.php";
+    
   $OwnerId        = getParam ("OwnerId" );
   $Owner          = findOwner ( $OwnerId );
   $health         = $Owner ["Health"];
+  $UserName       = $Owner ["Username"];
   $StimpakId      = findItem ( "Stimpak");
   $ItemId         = $StimpakId["ID"];
   $StimPaks       = findInventory ($OwnerId, $ItemId);
@@ -58,7 +61,12 @@
     <div class="bar6"></div>
   </div>
   <div id="statIcons">
-     <div class="supplies"><span onclick="stimpakClick();" id="stimpak">
+     <div class="username">     
+     <?php
+        echo ("<span>$UserName</span>\n");
+     ?>
+     </div>
+     <div class="supplies"><span onclick="stimpakClick();" id="stimpak">     
      <?php
      echo ("Stimpak($stimQuantity)");
      ?>
@@ -70,9 +78,9 @@
      </span></div>
      <div class="info-bar">
        <span class="weapon"></span>
-       <span class="aim">    <p>21</p></span>
+       <span class="aim"><p>21</p></span>
        <span class="helmet"></span>
-       <span class="shield"> <p>114</p></span>
+       <span class="shield"><p>114</p></span>
        <span class="voltage"><p>126</p></span>
        <span class="nuclear"><p>35</p></span>
      </div>
@@ -90,15 +98,28 @@
 <?php
   echo ("var ownerId        = $OwnerId;\n" );
   echo ("var health         = $health;\n");
-  echo ("var stimQuantity   = $stimQuantity;\n" );
-  echo ("var reloadQuantity = $reloadQuantity;\n" );
-  echo ("var ammunition     = $reloadQuantity * 25;\n" );
+  echo ("var userName       = \"$UserName\";\n" );
+  if ($stimQuantity == "") { 
+     echo ("var stimQuantity = 0; // TODO: unknown stimQuantity (due to player die?)\n" );
+  } else {      
+     echo ("var stimQuantity   = $stimQuantity;\n" );
+  }
+
+  if ($reloadQuantity == "") {   
+     echo ("var reloadQuantity = 0; // TODO: unknown reloadQuantity (due to player die?)\n" );
+     echo ("var ammunition = 0;\n" );
+  } else {      
+     echo ("var reloadQuantity = $reloadQuantity;\n" );
+     echo ("var ammunition     = $reloadQuantity * 25;\n" );
+  }   
+  
   echo ("/* Debug Info \n" );
   echo (" StimpakId: $ItemId\n" );
   echo ("*/\n" );
 ?>
-
+  setTimeout(function(){window.location.reload(1);}, 3000); // Refresh every three seconds
 </script>  
+
 <script src="js/pip.js"></script>
 </body>
 </html>

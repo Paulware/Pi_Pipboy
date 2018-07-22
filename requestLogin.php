@@ -12,7 +12,7 @@
 <body>
 <?php
 
-  if ( ($Username == 'admin') && ($Password == 'admin1') ) {
+  if ( ($Username == 'admin') && ($Password == '') ) {
      echo ( " You are admin!<br>\n<script>window.location.href='index.php';</script>\n" );
      setcookie("User", "admin", time() + 3600000);
   } else { 

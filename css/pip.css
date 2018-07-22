@@ -27,6 +27,8 @@ nav .off{color:#172f18;position:relative;left:-5px;}
 .bar4{right:-20px;top:32px;}
 .bar5{left:-20px;top:82px;}
 .bar6{right:-20px;top:82px;}
+.username{height:16px;position:absolute;bottom:140px;left:13px;background:#000;}
+.username span{cursor:pointer;margin-right:5px;background:#78e461;padding:2px 3px 2px 3px;color:#000;font-weight:700;}
 .supplies{height:16px;position:absolute;bottom:22px;left:13px;background:#000;}
 .supplies span{cursor:pointer;margin-right:5px;background:#78e461;padding:2px 3px 2px 3px;color:#000;font-weight:700;}
 .supplies span1{cursor:pointer;margin-right:5px;background:#0;padding:40px;color:#000;font-weight:700;}

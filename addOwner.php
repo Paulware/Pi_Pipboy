@@ -8,7 +8,8 @@
 
 <script>
   function addPipboy (MAC, Username, Typename) {
-    window.location.href = 'addPipboyMac.php?MAC=' + MAC + '&Username=' + Username + '&Typename=' + Typename;
+    window.location.href = 'addPipboyMac.php?MAC=' + MAC + '&Username=' + Username +
+                           '&Typename=' + Typename;
   }
 
 </script>
@@ -19,7 +20,7 @@
 <table>
 <tr><td>MAC Address</td><td><input name="macAddress"></td></tr>
 <tr><td>Username</td><td><input name="Username"></td></tr>
-<tr><td>Typename</td><td><select name="Typename"><option value="Player">Player</option><option value="Rifle">Rifle</option><option value="Flag">Flag</option><option value="Tank">Tank</option><option value="NPC">Non-Player Character</option><option value="PickAndDrop">Pick and Drop</option></select></td></tr>
+<tr><td>Typename</td><td><select name="Typename"><option value="Player">Player</option><option value="Watch">Watch</option><option value="Rifle">Rifle</option><option value="Flag">Flag</option><option value="Tank">Tank</option><option value="NPC">Non-Player Character</option><option value="PickAndDrop">Pick and Drop</option></select></td></tr>
 </table>
 <br>
 <input type="button" value="Cancel" onclick="window.location.href='index.php';">
